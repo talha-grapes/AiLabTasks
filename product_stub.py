@@ -1,3 +1,9 @@
+#sp23-bai-042 ,#sp23-bai-037
+
+class OutofStockError(Exception):
+    def __init__(self, message = "out of stock"):
+        self.message = message
+        super().__init__(self.message)
 class Product:
   def __init__(self, name, amount, price):
       self.name = name
@@ -8,9 +14,15 @@ class Product:
       pass
 
   def make_purchase(self, quantity):
-      pass
-
-# create product object
-# make purchases against different product quantities (make sure to run each test case)
-# do not forget to handle exceptions
-# print the remaining stock after each purchase
+      if quantity > self.amount:
+          raise OutofStockError(f"Quantity {quantity} is not in stock")
+      else:
+          self.amount = self.amount - quantity
+          price = self.get_price(quantity=quantity)
+          print(price)
+      
+Prod = Product("Bag", 25, 1000)
+try:
+    Prod.make_purchase(32)
+except OutofStockError as exception:
+    print(exception)
