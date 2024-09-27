@@ -34,7 +34,40 @@ class Product:
           print(price)
       
 Prod = Product("Bag", 25, 1000)
+
+
+try:
+    print('Test case 1')
+    Prod.make_purchase(0)
+    Prod.get_price(0)
+except OutofStockError as e:
+    print(f'error {e}')
+except Exception as e:
+    print('Unexpected error',e)
+
+try:
+    print('Test case 2')
+    Prod.make_purchase(-1)
+    Prod.get_price(-1)
+except OutofStockError as e:
+    print(f'error {e}')
+except Exception as e:
+    print('Unexpected error',e)
+
+try:
+    print('Test case 3')
+    Prod.make_purchase(20)
+    Prod.get_price(10)
+except OutofStockError as e:
+    print(f'error {e}')
+except Exception as e:
+    print('Unexpected error',e)
+
+    
 try:
     Prod.make_purchase(32)
+    Prod.get_price(32)
 except OutofStockError as exception:
     print(exception)
+except Exception as e:
+    print('Unexpected error',e)
